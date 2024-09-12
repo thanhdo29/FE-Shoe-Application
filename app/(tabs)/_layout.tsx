@@ -1,37 +1,38 @@
-import { Tabs } from 'expo-router';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
+import TabBar from '~/components/atoms/TabBar';
+import Home from './home';
+import Favourite from './favourite';
+import Notification from './notification';
+import Setting from './setting';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+const _layout = () => {
+    const Tab = createBottomTabNavigator();
+    return (
+        <Tab.Navigator tabBar={props => <TabBar {...props} />}>
+            <Tab.Screen
+                component={Home}
+                name='(tabs)/home'
+                options={{ title: "Home", headerShown: false }}
+            />
+            <Tab.Screen
+                component={Favourite}
+                name='(tabs)/favourite'
+                options={{ title: "Favourite", headerShown: false }}
+            />
+            
+            <Tab.Screen
+                component={Notification}
+                name='(tabs)/notification'
+                options={{ title: "Notification", headerShown: false }}
+            />
+            <Tab.Screen
+                component={Setting}
+                name='(tabs)/setting'
+                options={{ title: "Setting", headerShown: false }}
+            />
+        </Tab.Navigator>
+    );
+};
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
-  );
-}
+export default _layout;
