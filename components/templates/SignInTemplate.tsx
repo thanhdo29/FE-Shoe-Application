@@ -20,11 +20,11 @@ const SignInTemplate: React.FC = (): JSX.Element => {
   }, [email, password])
 
   const handleBack = (): void => {
-    // router.back()
+    router.back()
   }
 
   const redirectToSignUp = (): void => {
-    
+    router.push('/authentication/SignUp')
   }
 
   const redirectToForgot = (): void => {

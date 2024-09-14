@@ -17,8 +17,8 @@ const initializeI18n = async (): Promise<void> => {
         escapeValue: false
       },
       resources: {
-        en: { translation: en },
-        vi: { translation: vi }
+        en: { translation: vi },
+        vi: { translation: en }
       }
     })
 }
