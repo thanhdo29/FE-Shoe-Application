@@ -1,17 +1,29 @@
 {
   "next": "Next",
   "getStarted": "Get Started",
+  "emailAddress": "Email Address",
+  "enterEmail": "Enter email",
+  "password": "Password",
+  "confirmpassword": "Confirm Password",
+  "invalidEmail": "Invalid email!",
+  "invalidPassword": "Invalid password!",
+  "passwordsDoNotMatch": "Passwords do not match!",
   "signIn": {
     "helloAgain": "Hello Again!",
     "welcomeBackYouHaveBeenMissed": "Welcome Back You’ve Been Missed!",
-    "emailAddress": "Email Address",
-    "enterEmail": "Enter email",
-    "password": "Password",
     "recoveryPassword": "Recovery Password",
     "signIn": "Sign In",
     "signInWithGoogle": "Sign in with google",
     "doNotHaveAnAccount": "Don’t have an account?",
     "signUpForFree": "Sign Up for free"
+  },
+  "signUp": {
+    "createAccount": "Create Account",
+    "letsCreateAccountTogether": "Let’s Create Account Together",
+    "signUp": "Sign Up",
+    "signInWithGoogle": "Sign in with google",
+    "alreadyHaveAnAccount": "Already have an account?",
+    "signIn": "Sign in"
   },
   "home": {
     "seeAll": "See all",
@@ -33,6 +45,11 @@
     "account": "Account",
     "appSettings": "App Settings",
     "account&Settings": "Account & Settings"
+  },
+  "forgotPassword": {
+    "recoveryPassword": "Recovery Password",
+    "pleaseEnterYourEmail": "Please Enter Your Email Address To Recieve a Verification Code",
+    "continue": "Continue"
   },
   "permissions": {
     "locationServices": "Location Services",

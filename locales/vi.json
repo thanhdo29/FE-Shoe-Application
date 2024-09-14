@@ -1,17 +1,29 @@
 {
   "next": "Tiếp",
   "getStarted": "Bắt đầu",
+  "emailAddress": "Địa chỉ email",
+  "enterEmail": "Nhập email",
+  "password": "Mật khẩu",
+  "confirmpassword": "Nhập lại mật khẩu",
+  "invalidEmail": "Email không hợp lệ!",
+  "invalidPassword": "Mật khẩu không hợp lệ!",
+  "passwordsDoNotMatch": "Mật khẩu không trùng khớp!",
   "signIn": {
-    "helloAgain": "Hello Again!",
-    "welcomeBackYouHaveBeenMissed": "Welcome Back You’ve Been Missed!",
-    "emailAddress": "Email Address",
-    "enterEmail": "Enter email",
-    "password": "Password",
-    "recoveryPassword": "Recovery Password",
-    "signIn": "Sign In",
-    "signInWithGoogle": "Sign in with google",
-    "doNotHaveAnAccount": "Don’t have an account?",
-    "signUpForFree": "Sign Up for free"
+    "helloAgain": "Xin chào trở lại!",
+    "welcomeBackYouHaveBeenMissed": "Chào mừng trở lại! Chúng tôi rất nhớ bạn!",
+    "recoveryPassword": "Quên mật khẩu",
+    "signIn": "Đăng nhập",
+    "signInWithGoogle": "Đăng nhập bằng google",
+    "doNotHaveAnAccount": "Bạn chưa có tài khoản?",
+    "signUpForFree": "Đăng ký miễn phí"
+  },
+  "signUp": {
+    "createAccount": "Tạo tài khoản",
+    "letsCreateAccountTogether": "Hãy tạo tài khoản cùng nhau",
+    "signUp": "Đăng ký",
+    "signInWithGoogle": "Đăng nhập bằng Google",
+    "alreadyHaveAnAccount": "Đã có tài khoản?",
+    "signIn": "Đăng nhập"
   },
   "home": {
     "seeAll": "Tất cả",
@@ -33,6 +45,11 @@
     "account": "Tài khoản",
     "appSettings": "Cài đặt ứng dụng",
     "account&Settings": "Tài khoản & Cài đặt"
+  },
+  "forgotPassword": {
+    "recoveryPassword": "Khôi phục mật khẩu",
+    "pleaseEnterYourEmail": "Vui lòng nhập địa chỉ email của bạn để nhận mã xác nhận",
+    "continue": "Tiếp tục"
   },
   "permissions": {
     "locationServices": "Dịch vụ Vị trí",
