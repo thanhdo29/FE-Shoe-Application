@@ -36,6 +36,7 @@ const colors = {
     lightGreen: '#aaffaa',
     lightOverlayColor: 'rgba(255, 255, 255, 0.6)',
     lightRed: '#ff4f7e',
+    lightSilver: '#F8F9FA',
     line: '#282C35',
     midnightBlue: '#1A2530',
     orange: '#FF886B',

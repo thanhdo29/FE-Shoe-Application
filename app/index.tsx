@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import _layout from './(tabs)/_layout'
 import OnboardingTemplate from '~/components/templates/OnboardingTemplate'
@@ -17,5 +16,3 @@ const index = () => {
 }
 
 export default index
-
-const styles = StyleSheet.create({})
