@@ -6,6 +6,7 @@ import getColors from '~/constants/Colors'
 import useTranslation from '~/hooks/useTranslation'
 import { ButtonAdd } from '../atoms/ButtonAdd'
 import { useRouter } from 'expo-router'
+import { InforShoesItem } from '../molecules/InforShoesItem'
 
 interface Props {
   dataShoes: any
@@ -44,26 +45,7 @@ export const ListShoesItem = (props: Props): React.ReactElement => {
             paddingLeft: 12,
             alignItems: "flex-end"
           }}>
-          <View style={{ gap: 8, paddingRight: 21, paddingBottom: 12 }}>
-            <Text
-              style={{
-                fontSize: 12,
-                fontWeight: 400,
-                color: colors.cornflowerBlue
-              }}>{t('home.bestSeller')}</Text>
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: 500,
-                color: colors.midnightBlue
-              }}>Nike Jordan</Text>
-            <Text
-              style={{
-                fontSize: 14,
-                fontWeight: 500,
-                color: colors.midnightBlue
-              }}>$493.00</Text>
-          </View>
+          <InforShoesItem/>
           <ButtonAdd style={{ alignSelf: "flex-end" }} />
         </View>
       </MotiView>
