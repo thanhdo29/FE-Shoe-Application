@@ -25,7 +25,7 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
     <View style={styles.container}>
 
       <View style={styles.header}>
-        <Text style={[styles.title, { color: colors.black }]}>{t('Size')}</Text>
+        <Text style={[styles.title, { color: colors.black }]}>{t('details.size')}</Text>
         <View style={styles.sizeLabels}>
           <Text style={[styles.sizeLabel, { color: colors.darkGray }]}>EU</Text>
           <Text style={[styles.sizeLabel, { color: colors.darkGray }]}>US</Text>
