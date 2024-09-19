@@ -78,5 +78,15 @@
     "permissionsToContinue": "permissions to continue.",
     "youCanChangePermissions": "You can change permissions in the Settings app.",
     "openSettings": "Open Settings"
+  },
+  "details": {
+    "bestSeller": "BEST SELLER",
+    "productDescription": "Air Jordan is a basketball, sports, and fashion brand from America produced by Nike...",
+    "gallery": "Gallery",
+    "price": "Price",
+    "addToCart": "Add To Cart",
+    "outOfStock": "Out Of Stock",
+    "size": "Size",
+    "mensShoes": "Men’s Shoes"
   }
 }

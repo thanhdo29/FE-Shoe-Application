@@ -78,5 +78,16 @@
     "permissionsToContinue": "các quyền để tiếp tục.",
     "youCanChangePermissions": "Bạn có thể thay đổi các quyền trong ứng dụng Cài đặt.",
     "openSettings": "Mở Cài đặt"
+  },
+  "details": {
+    "bestSeller": "BÁN CHẠY NHẤT",
+    "productDescription": "Air Jordan là một thương hiệu giày bóng rổ, thể thao, thời trang và quần áo phong cách của Mỹ được sản xuất bởi Nike...",
+    "gallery" : "Màu Sắc",
+    "price" : "Giá thanh toán",
+    "addToCart" : "Thêm vào giỏ hàng",
+    "outOfStock": "Hết hàng",
+    "size" : "Kích cỡ",
+    "mensShoes": "Giày Nam"
+
   }
 }

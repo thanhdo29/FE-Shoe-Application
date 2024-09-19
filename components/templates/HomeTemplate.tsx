@@ -1,17 +1,17 @@
 import { Entypo, Feather, Ionicons } from '@expo/vector-icons'
 import { MotiView } from 'moti'
 import React, { useState } from 'react'
-import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native'
 
 import FormInputWithLabel from '~/components/atoms/FormInputWithLabel'
 import getColors from '~/constants/Colors'
 import dataBranch from '~/constants/DataBranch'
 import useTranslation from '~/hooks/useTranslation'
-import { ButtonRenderBranch } from '../atoms/ButtonRenderBranch'
-import Header from '../molecules/Header'
-import { ShoesCategory } from '../molecules/ShoesCategory'
-import { ListShoesItem } from '../organisms/ListShoeItem'
-import { BannerShoesItem } from '../molecules/BannerShoesItem'
+import { ButtonRenderBranch } from '~/components/atoms/ButtonRenderBranch'
+import Header from '~/components/molecules/Header'
+import { ShoesCategory } from '~/components/molecules/ShoesCategory'
+import { ListShoesItem } from '~/components/organisms/ListShoeItem'
+import { BannerShoesItem } from '~/components/molecules/BannerShoesItem'
 
 const HomeTemplate: React.FC = () => {
   const color = getColors(useColorScheme())
