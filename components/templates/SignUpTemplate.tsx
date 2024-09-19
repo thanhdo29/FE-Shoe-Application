@@ -65,6 +65,7 @@ const SignUpTemplate: React.FC = (): JSX.Element => {
       <Header
         title={t('signUp.createAccount')}
         subtitle={t('signUp.letsCreateAccountTogether')}
+        subtitleColor={colors.slateGray}
         backIcon={<AntDesign name="left" size={18} color={colors.black} onPress={handleBack} />}
       />
 
