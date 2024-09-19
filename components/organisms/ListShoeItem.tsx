@@ -1,10 +1,11 @@
 import { MotiView } from 'moti'
 import React from 'react'
-import { FlatList, Image, StyleSheet, Text, useColorScheme, View } from 'react-native'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native'
 
 import getColors from '~/constants/Colors'
 import useTranslation from '~/hooks/useTranslation'
 import { ButtonAdd } from '../atoms/ButtonAdd'
+import { useRouter } from 'expo-router'
 
 interface Props {
   dataShoes: any
@@ -14,9 +15,17 @@ export const ListShoesItem = (props: Props): React.ReactElement => {
   const colors = getColors(useColorScheme())
   const { t } = useTranslation()
 
+  const router = useRouter()
+
+  const redirectToDetail = (): void => {
+    router.push('/product/Detail')
+  }
+
+
   const renderItemList = (index: number, item: any): React.ReactElement => {
     return (
-      <MotiView
+      <TouchableOpacity onPress={redirectToDetail}>
+        <MotiView
         style={[styles.container, { backgroundColor: colors.white }]}
         from={{ opacity: 0, translateX: 50 }}
         animate={{ opacity: 1, translateX: 0 }}
@@ -58,7 +67,9 @@ export const ListShoesItem = (props: Props): React.ReactElement => {
           <ButtonAdd style={{ alignSelf: "flex-end" }} />
         </View>
       </MotiView>
+      </TouchableOpacity>
     )
+
   }
 
   return (

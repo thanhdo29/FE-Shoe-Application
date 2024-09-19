@@ -10,15 +10,10 @@ interface Props {
   subtitle?: string
   leftIcon?: React.ReactElement
   rightIcon?: React.ReactElement
+  subtitleColor?: string
 }
 
-export default function Header ({
-  backIcon,
-  title,
-  subtitle,
-  leftIcon,
-  rightIcon
-}: Props): React.ReactElement {
+export default function Header ({backIcon,title,subtitle,leftIcon,rightIcon, subtitleColor}: Props): React.ReactElement {
   const colors = getColors(useColorScheme())
 
   const renderIcon = (
@@ -54,7 +49,7 @@ export default function Header ({
             </Text>
           )}
           {!isUndefined(subtitle) && (
-            <Text style={[styles.subtitle, { color: colors.slateGray }]}>
+            <Text style={[styles.subtitle, { color: subtitleColor }]}>
               {subtitle}
             </Text>
           )}
@@ -94,6 +89,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     textAlign: 'center',
+    fontSize: 16
   },
   iconContainer: {
     position: 'absolute',

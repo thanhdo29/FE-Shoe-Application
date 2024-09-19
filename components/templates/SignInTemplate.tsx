@@ -32,6 +32,7 @@ const SignInTemplate: React.FC = (): JSX.Element => {
   }
 
   const ButtonSignin = (): void => {
+    router.replace('/(tabs)/home')
     
   }
   return (
@@ -43,6 +44,7 @@ const SignInTemplate: React.FC = (): JSX.Element => {
       <Header
         title={t('signIn.helloAgain')}
         subtitle={t('signIn.welcomeBackYouHaveBeenMissed')}
+        subtitleColor={colors.slateGray}
         backIcon={
           <AntDesign name="left" size={18}
             color={colors.black} onPress={handleBack}/>

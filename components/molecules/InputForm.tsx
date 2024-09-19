@@ -87,6 +87,7 @@ const InputForm: React.FC<Props> = (props: Props): JSX.Element => {
       )}
 
       <PositiveButton
+        onPress={props.onLoginPress}
         title={props.buttonTitle}
         style={[{ backgroundColor: colors.cornflowerBlue},styles.customButton]}
       />

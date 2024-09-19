@@ -34,6 +34,7 @@ export default function RootLayout() {
         <Stack.Screen name="index" options={{headerShown:false}}/>
         <Stack.Screen name="authentication/SignIn" options={{headerShown:false}}/>
         <Stack.Screen name="authentication/SignUp" options={{headerShown:false}}/>
+        <Stack.Screen name="product/Detail" options={{headerShown:false}}/>
       </Stack>
     </ThemeProvider>
   );
