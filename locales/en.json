@@ -88,5 +88,9 @@
     "outOfStock": "Out Of Stock",
     "size": "Size",
     "mensShoes": "Men’s Shoes"
-  }
+  },
+  "Subtotal": "Subtotal",
+  "Shopping": "Shopping",
+  "TotalCost": "Total Cost",
+  "Checkout": "Checkout"
 }

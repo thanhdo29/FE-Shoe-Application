@@ -12,9 +12,11 @@ import Header from '~/components/molecules/Header'
 import { ShoesCategory } from '~/components/molecules/ShoesCategory'
 import { ListShoesItem } from '~/components/organisms/ListShoeItem'
 import { BannerShoesItem } from '~/components/molecules/BannerShoesItem'
+import { useRouter } from 'expo-router'
 
 const HomeTemplate: React.FC = () => {
   const color = getColors(useColorScheme())
+  const router = useRouter()
 
   const [selectedBranch, setSelectBranch] = useState<{
     logo: number
@@ -26,8 +28,12 @@ const HomeTemplate: React.FC = () => {
     <Entypo name="grid" size={25} color={color.midnightBlue} />
   )
   const rightIconOfHeader = (
-    <Ionicons name="bag-handle-outline" size={25} color={color.midnightBlue} />
+    <Ionicons name="bag-handle-outline" size={25} color={color.midnightBlue} onPress={()=>redirectToCart()}/>
   )
+
+  const redirectToCart = (): void => {
+    router.push('/product/Cart')
+  }
 
   return (
     <ScrollView>
@@ -158,7 +164,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingBottom: 130,
-    paddingTop: 20
+    paddingTop: 30
   },
   selectItem: {
     alignItems: 'center',
