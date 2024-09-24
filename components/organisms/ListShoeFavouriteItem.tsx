@@ -39,10 +39,8 @@ export default ListShoeFavouriteItem
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        borderRadius: 20,
-        flexDirection: 'column',
-        padding:12,
-        margin:10
+        borderRadius: 16,
+        padding: 18,
+        margin:10,
       }
 })
