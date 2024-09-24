@@ -82,12 +82,15 @@
   "details": {
     "bestSeller": "BÁN CHẠY NHẤT",
     "productDescription": "Air Jordan là một thương hiệu giày bóng rổ, thể thao, thời trang và quần áo phong cách của Mỹ được sản xuất bởi Nike...",
-    "gallery" : "Màu Sắc",
-    "price" : "Giá thanh toán",
-    "addToCart" : "Thêm vào giỏ hàng",
+    "gallery": "Màu Sắc",
+    "price": "Giá thanh toán",
+    "addToCart": "Thêm vào giỏ hàng",
     "outOfStock": "Hết hàng",
-    "size" : "Kích cỡ",
+    "size": "Kích cỡ",
     "mensShoes": "Giày Nam"
-
-  }
+  },
+  "Subtotal": "Tổng chi phí",
+  "Shopping": "Giá mua ",
+  "TotalCost": "Tổng thanh toán",
+  "Checkout": "Thanh Toán "
 }
