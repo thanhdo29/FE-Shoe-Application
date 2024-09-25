@@ -40,7 +40,7 @@ export default ListShoeFavouriteItem
 const styles = StyleSheet.create({
     container: {
         borderRadius: 16,
-        padding: 18,
-        margin:10,
+        padding: 10,
+        margin:10
       }
 })
