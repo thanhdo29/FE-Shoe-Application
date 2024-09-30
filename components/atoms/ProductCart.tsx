@@ -51,7 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </TouchableOpacity>
           <Text style={styles.quantity}>{quantity}</Text>
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: colors.blue }]}
+            style={[styles.button, { backgroundColor: '#5B9EE1' }]}
             onPress={onIncrease}
           >
             <AntDesign name="plus" size={15} color={colors.white} />

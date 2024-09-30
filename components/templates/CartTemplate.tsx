@@ -9,9 +9,9 @@ import { useRouter } from 'expo-router';
 
 const CartTemplate: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1);
-  const colorScheme = useColorScheme();
-  const colors = getColors(colorScheme);
+  const colors = getColors(useColorScheme());
   const router = useRouter()
+  
 
   const sampleShoe = {
     brand: {
@@ -43,9 +43,15 @@ const CartTemplate: React.FC = () => {
     router.back()
   }
 
+  const redirectToCheckout = (): void => {
+    router.push('/product/Checkout')
+  }
+
 
   return (
+    
     <View style={styles.container}>
+      
       <Header
         leftIcon={
           <TouchableOpacity onPress={handleBack} style={{padding: 10,borderRadius: 50,backgroundColor: colors.white}}>
@@ -66,11 +72,10 @@ const CartTemplate: React.FC = () => {
       </View>
 
       <PayProduct
-        
         subtotal="$1250.00"
         shipping="$40.90"
         totalCost="$1690.99"
-        onCheckout={() => console.log('Proceed to checkout')}
+        onCheckout={() => redirectToCheckout()}
       />
     </View>
   );

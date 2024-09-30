@@ -37,7 +37,7 @@ const PayProduct: React.FC<CheckoutSummaryProps> = ({
         <Text style={styles.totalValue}>{totalCost}</Text>
       </View>
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: colors.blue }]}
+        style={[styles.button, { backgroundColor: '#5B9EE1'}]}
         onPress={onCheckout}
       >
         <Text style={[styles.buttonText, { color: colors.white }]}>{t('Checkout')}</Text>

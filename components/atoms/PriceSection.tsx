@@ -27,7 +27,7 @@ const PriceSection: React.FC<PriceSectionProps> = ({ inStock }) => {
         style={[
           styles.button,
           {
-            backgroundColor: inStock ? currentColors.blue : currentColors.gray,
+            backgroundColor: inStock ? '#5B9EE1' : currentColors.gray,
           },
         ]}
         disabled={!inStock}
