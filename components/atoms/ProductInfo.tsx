@@ -16,7 +16,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ name, price }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.bestSeller, { color: colors.blue }]}>
+      <Text style={[styles.bestSeller, { color: '#5B9EE1' }]}>
         {t('details.bestSeller')}
       </Text>
       <Text style={styles.productName}>

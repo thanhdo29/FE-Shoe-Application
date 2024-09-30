@@ -41,7 +41,7 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({
               key={size}
               style={[styles.button,
                 {
-                  backgroundColor: isOutOfStock ? colors.lightGray : size === selectedSize ? colors.blue : colors.white,
+                  backgroundColor: isOutOfStock ? colors.lightGray : size === selectedSize ? '#5B9EE1' : colors.white,
                 },
                 isOutOfStock && { borderColor: colors.whiteSmoke }
               ]}
