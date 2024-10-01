@@ -13,6 +13,7 @@ import { ShoesCategory } from '~/components/molecules/ShoesCategory'
 import { ListShoesItem } from '~/components/organisms/ListShoeItem'
 import { BannerShoesItem } from '~/components/molecules/BannerShoesItem'
 import { useRouter } from 'expo-router'
+import ButtonRenderIcon from '../atoms/ButtonRenderIcon'
 
 const HomeTemplate: React.FC = () => {
   const color = getColors(useColorScheme())
@@ -39,8 +40,8 @@ const HomeTemplate: React.FC = () => {
     <ScrollView>
       <View style={styles.container}>
         <Header
-          leftIcon={leftIconOfHeader}
-          rightIcon={rightIconOfHeader}
+          leftIcon={<ButtonRenderIcon icon={leftIconOfHeader}/>}
+          rightIcon={<ButtonRenderIcon icon={rightIconOfHeader}/>}
 
         />
 
