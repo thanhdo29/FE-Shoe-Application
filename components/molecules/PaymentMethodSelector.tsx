@@ -34,6 +34,7 @@ const PaymentMethodSelector: React.FC<PaymentMethodSelectorProps> = ({ selectedM
     <View>
       <FlatList
         data={paymentMethods}
+        scrollEnabled={false}
         keyExtractor={item => item.id}
         renderItem={renderPaymentOption}
       />

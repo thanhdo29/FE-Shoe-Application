@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import PaymentMethodSelector from './PaymentMethodSelector'; // Component chọn phương thức thanh toán
-import ContactRow from '../atoms/ContactRow';
+import PaymentMethodSelector from '~/components/molecules/PaymentMethodSelector';
+import ContactRow from '~/components/atoms/ContactRow';
 
 const ContactInfo = () => {
   const [email, setEmail] = useState('rumenhussen@gmail.com');

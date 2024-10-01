@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import {
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   useColorScheme,
   View,
 } from "react-native";
 import getColors from "~/constants/Colors";
-import Header from "../molecules/Header";
+import Header from "~/components/molecules/Header";
 import { useRouter } from "expo-router";
 import { Entypo } from "@expo/vector-icons";
-import PayProduct from "../atoms/PayProduct";
-import ContactInfo from "../molecules/ContactInfo";
-import PaymentSuccessModal from "../atoms/PaymentSuccessModal"; // Đảm bảo đường dẫn đúng
+import PayProduct from "~/components/atoms/PayProduct";
+import ContactInfo from "~/components/molecules/ContactInfo";
+import PaymentSuccessModal from "~/components/atoms/PaymentSuccessModal"; // Đảm bảo đường dẫn đúng
 
 const CheckoutTemplate = () => {
   const colors = getColors(useColorScheme());
@@ -24,12 +25,18 @@ const CheckoutTemplate = () => {
   const [isModalVisible, setModalVisible] = useState(false); // State để quản lý modal
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+    showsVerticalScrollIndicator={false}
+    >
+      <View  style={styles.container}>
+
+      
       <Header
         leftIcon={
           <TouchableOpacity
             onPress={handleBack}
             style={{
+              right:10,
               padding: 10,
               borderRadius: 50,
               backgroundColor: colors.white,
@@ -50,8 +57,7 @@ const CheckoutTemplate = () => {
         shipping="$40.90"
         totalCost="$1690.99"
         onCheckout={() => {
-          console.log("Proceed to checkout");
-          setModalVisible(true); // Hiển thị modal khi nhấn thanh toán
+          setModalVisible(true);
         }}
       />
 
@@ -62,7 +68,8 @@ const CheckoutTemplate = () => {
           router.replace('/(tabs)/home')
         }}
       />
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
