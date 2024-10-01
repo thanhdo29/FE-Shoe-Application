@@ -5,10 +5,10 @@ import { InforShoesItem } from '../molecules/InforShoesItem'
 import getColors from '~/constants/Colors'
 
 interface Props {
-    index:number
+    index: number
 }
 const ListShoeFavouriteItem = (props: Props) => {
-    const colors=getColors(useColorScheme())
+    const colors = getColors(useColorScheme())
     return (
         <MotiView
             style={[styles.container, { backgroundColor: colors.white }]}
@@ -19,7 +19,8 @@ const ListShoeFavouriteItem = (props: Props) => {
                 source={require('~/assets/images/shoes3.png')}
                 style={{
                     height: 100,
-                    maxWidth: 120
+                    width: '100%',
+                    resizeMode: 'contain'
                 }}
             />
             <View
@@ -40,7 +41,8 @@ export default ListShoeFavouriteItem
 const styles = StyleSheet.create({
     container: {
         borderRadius: 16,
-        padding: 10,
-        margin:10
-      }
+        padding: 15,
+        margin: 10,  // Thêm khoảng cách giữa các item
+    },
+    
 })
