@@ -1,47 +1,23 @@
-import { Icons } from "~/components/atoms/Icon"
-
-interface DataMethodAccount {
+interface DataMethodSetting {
   id: string
   nameMethod: string
-  typeIconLeft: any
-  typeIconRight: any
-  leftIconName: string
-  rightIconName: string
 }
-
-const dataMethodAccount: DataMethodAccount[] = [
+const dataMethodSetting: DataMethodSetting[] = [
   {
     id: '1',
-    leftIconName: 'bell-ring-outline',
-    nameMethod: 'notificationSetting',
-    rightIconName: 'right',
-    typeIconLeft: Icons.MaterialCommunityIcons,
-    typeIconRight: Icons.AntDesign
+    nameMethod: 'enebleFaceIDForLogIn'
   },
   {
     id: '2',
-    leftIconName: 'bag-handle-outline',
-    nameMethod: 'shippingAddress',
-    rightIconName: 'right',
-    typeIconLeft: Icons.Ionicons,
-    typeIconRight: Icons.AntDesign
+    nameMethod: 'eneblePushNotifications'
   },
   {
     id: '3',
-    leftIconName: 'wallet',
-    nameMethod: 'paymentInfo',
-    rightIconName: 'right',
-    typeIconLeft: Icons.AntDesign,
-    typeIconRight: Icons.AntDesign
+    nameMethod: 'enebleLocationServices'
   },
   {
     id: '4',
-    leftIconName: 'delete',
-    nameMethod: 'deleteAccount',
-    rightIconName: 'right',
-    typeIconLeft: Icons.AntDesign,
-    typeIconRight: Icons.AntDesign
+    nameMethod: 'darkMode'
   }
 ]
-
-export default dataMethodAccount
+export default dataMethodSetting
