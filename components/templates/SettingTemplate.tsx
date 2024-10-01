@@ -8,6 +8,7 @@ import useTranslation from '~/hooks/useTranslation'
 import Header from '../molecules/Header'
 import { ChooseMethod } from '../molecules/ChooseMethod'
 import { RenderIcon } from '../atoms/RenderIcon'
+import dataMethodAccount from '~/constants/DataMethodAccount'
 
 const SettingTemplate: React.FC = () => {
   const colors = getColors(useColorScheme())
@@ -35,7 +36,7 @@ const SettingTemplate: React.FC = () => {
             marginVertical: 10
           }}
         />
-        {dataMethodSetting.map((method) => (
+        {dataMethodAccount.map((method) => (
           <ChooseMethod key={method.id} nameMethod={method.nameMethod}
             leftIcon={
               <RenderIcon
