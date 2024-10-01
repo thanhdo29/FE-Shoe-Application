@@ -51,7 +51,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
   const leftIconOfHeader = (
     <TouchableOpacity
       onPress={handleBack}
-      style={[styles.iconButton, { backgroundColor: colors.white }]}
+      style={[styles.iconButton, { backgroundColor: colors.white, left:10 }]}
     >
       <Entypo name="chevron-left" size={18} color={colors.midnightBlue} />
     </TouchableOpacity>
@@ -59,7 +59,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
 
   const rightIconOfHeader = (
     <TouchableOpacity
-      style={[styles.iconButton, { backgroundColor: colors.white }]}
+      style={[styles.iconButton, { backgroundColor: colors.white, right:10 }]}
     >
       <Ionicons
         name="bag-handle-outline"

@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   leftIcon: {
-    left: 10,
+    left: 0,
   },
   rightIcon: {
-    right: 10,
+    right: 0,
   },
 })

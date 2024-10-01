@@ -37,7 +37,6 @@ const CheckoutTemplate = () => {
           <TouchableOpacity
             onPress={handleBack}
             style={{
-              right:10,
               padding: 10,
               borderRadius: 50,
               backgroundColor: colors.white,

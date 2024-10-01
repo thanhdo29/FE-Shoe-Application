@@ -9,12 +9,13 @@ import ButtonRenderIcon from '../atoms/ButtonRenderIcon'
 const FavouriteTemplate = () => {
 
   return (
-    <View style={{ flex: 1,  marginBottom: 120, gap: 20, marginTop: 20 }}>
+    <View style={{ flex: 1,  marginBottom: 120, gap: 20, margin: 20 }}>
       <Header
         style={{ fontWeight:"bold"}}
         subtitle='Favourite'
         rightIcon={<ButtonRenderIcon
-          icon={<FontAwesome6 name="heart" size={18} color="black" />} />} />
+          icon={<FontAwesome6 name="heart" size={18} color="black"  />} />}
+        />
       <View style={styles.container}>
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -32,9 +33,6 @@ export default FavouriteTemplate
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    marginHorizontal:20
-    
-    
+    alignItems: "center",  
   }
 })
