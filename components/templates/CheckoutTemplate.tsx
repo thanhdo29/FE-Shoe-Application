@@ -32,6 +32,7 @@ const CheckoutTemplate = () => {
 
       
       <Header
+        style={{ fontWeight:"bold"}}
         leftIcon={
           <TouchableOpacity
             onPress={handleBack}

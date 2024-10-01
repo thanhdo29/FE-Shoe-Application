@@ -11,6 +11,7 @@ const FavouriteTemplate = () => {
   return (
     <View style={{ flex: 1,  marginBottom: 120, gap: 20, marginTop: 20 }}>
       <Header
+        style={{ fontWeight:"bold"}}
         subtitle='Favourite'
         rightIcon={<ButtonRenderIcon
           icon={<FontAwesome6 name="heart" size={18} color="black" />} />} />
