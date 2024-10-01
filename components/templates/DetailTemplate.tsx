@@ -1,23 +1,32 @@
-import Entypo from '@expo/vector-icons/Entypo';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useRef, useState } from 'react';
-import { Dimensions, FlatList, ScrollView, StyleSheet, TouchableOpacity, View, Image, useColorScheme, SafeAreaView } from 'react-native';
+import Entypo from "@expo/vector-icons/Entypo";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import React, { useRef, useState } from "react";
+import {
+  Dimensions,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Image,
+  useColorScheme,
+  SafeAreaView,
+} from "react-native";
 
-import PriceSection from '~/components/atoms/PriceSection';
-import ProductInfo from '~/components/atoms/ProductInfo';
-import SizeSelector from '~/components/atoms/SizeSelector';
-import Gallery from '~/components/molecules/Gallery';
-import getColors from '~/constants/Colors';
+import PriceSection from "~/components/atoms/PriceSection";
+import ProductInfo from "~/components/atoms/ProductInfo";
+import SizeSelector from "~/components/atoms/SizeSelector";
+import Gallery from "~/components/molecules/Gallery";
+import getColors from "~/constants/Colors";
 
-import Header from '~/components/molecules/Header';
-import  useTranslation  from '~/hooks/useTranslation';
-import { useRouter } from 'expo-router';
-
+import Header from "~/components/molecules/Header";
+import useTranslation from "~/hooks/useTranslation";
+import { useRouter } from "expo-router";
 
 const images = [
-  require('~/assets/images/shoes5.png'),
-  require('~/assets/images/shoes6.png'),
-  require('~/assets/images/shoes7.png')
+  require("~/assets/images/shoes5.png"),
+  require("~/assets/images/shoes6.png"),
+  require("~/assets/images/shoes7.png"),
 ];
 
 const DetailTemplate: React.FC = (): JSX.Element => {
@@ -25,21 +34,20 @@ const DetailTemplate: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const colors = getColors(useColorScheme());
   const flatListRef = useRef<FlatList>(null);
-  const sizes = ['38', '39', '40', '41', '42', '43'];
-  const [selectedSize, setSelectedSize] = useState<string>('40');
-  const outOfStockSizes = ['42', '43'];
-  const router = useRouter()
+  const sizes = ["38", "39", "40", "41", "42", "43"];
+  const [selectedSize, setSelectedSize] = useState<string>("40");
+  const outOfStockSizes = ["42", "43"];
+  const router = useRouter();
 
-  
   const scrollToIndex = (index: number): void => {
     flatListRef.current?.scrollToIndex({ animated: true, index });
     setCurrentImageIndex(index);
   };
 
   const handleBack = (): void => {
-    router.back()
-  }
-  
+    router.back();
+  };
+
   const leftIconOfHeader = (
     <TouchableOpacity
       onPress={handleBack}
@@ -48,7 +56,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
       <Entypo name="chevron-left" size={18} color={colors.midnightBlue} />
     </TouchableOpacity>
   );
-  
+
   const rightIconOfHeader = (
     <TouchableOpacity
       style={[styles.iconButton, { backgroundColor: colors.white }]}
@@ -60,13 +68,22 @@ const DetailTemplate: React.FC = (): JSX.Element => {
       />
     </TouchableOpacity>
   );
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-
-        <Header leftIcon={leftIconOfHeader} rightIcon={rightIconOfHeader} subtitle={t('details.mensShoes')} />
-        <View style={[styles.imageContainer, { backgroundColor: colors.whiteSmoke }]}>
+        <Header
+          style={{ fontWeight:"bold"}}
+          leftIcon={leftIconOfHeader}
+          rightIcon={rightIconOfHeader}
+          subtitle={t("details.mensShoes")}
+        />
+        <View
+          style={[
+            styles.imageContainer,
+            { backgroundColor: colors.whiteSmoke },
+          ]}
+        >
           <FlatList
             ref={flatListRef}
             data={images}
@@ -75,15 +92,12 @@ const DetailTemplate: React.FC = (): JSX.Element => {
             showsHorizontalScrollIndicator={false}
             onScroll={({ nativeEvent }) => {
               const index = Math.round(
-                nativeEvent.contentOffset.x / Dimensions.get('window').width
+                nativeEvent.contentOffset.x / Dimensions.get("window").width
               );
               setCurrentImageIndex(index);
             }}
             renderItem={({ item }) => (
-              <Image
-                source={item}
-                style={styles.image}
-              />
+              <Image source={item} style={styles.image} />
             )}
             keyExtractor={(item, index) => index.toString()}
           />
@@ -93,7 +107,12 @@ const DetailTemplate: React.FC = (): JSX.Element => {
                 key={index}
                 style={[
                   styles.dot,
-                  { backgroundColor: index === currentImageIndex ? colors.darkGray : 'rgba(0, 0, 0, 0.3)' }
+                  {
+                    backgroundColor:
+                      index === currentImageIndex
+                        ? colors.darkGray
+                        : "rgba(0, 0, 0, 0.3)",
+                  },
                 ]}
               />
             ))}
@@ -101,10 +120,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
         </View>
         <View style={[styles.infoContainer, { backgroundColor: colors.white }]}>
           <ProductInfo name="Nike Air Jordan" price="$967.800" />
-          <Gallery
-            images={images}
-            scrollToIndex={scrollToIndex}
-          />
+          <Gallery images={images} scrollToIndex={scrollToIndex} />
           <SizeSelector
             sizes={sizes}
             selectedSize={selectedSize}
@@ -121,7 +137,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20
+    marginTop: 20,
   },
   imageContainer: {
     height: 270,
@@ -129,13 +145,13 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 300,
-    width: Dimensions.get('window').width,
-    resizeMode: 'cover',
+    width: Dimensions.get("window").width,
+    resizeMode: "cover",
   },
   dotContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     marginVertical: 8,
   },
   dot: {
@@ -147,7 +163,7 @@ const styles = StyleSheet.create({
   iconButton: {
     padding: 10,
     borderRadius: 50,
-    alignSelf: 'baseline',
+    alignSelf: "baseline",
   },
   infoContainer: {
     borderTopRightRadius: 25,

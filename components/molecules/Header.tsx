@@ -11,9 +11,10 @@ interface Props {
   leftIcon?: React.ReactElement
   rightIcon?: React.ReactElement
   subtitleColor?: string
+  style?: object; 
 }
 
-export default function Header ({backIcon,title,subtitle,leftIcon,rightIcon, subtitleColor}: Props): React.ReactElement {
+export default function Header (props: Props): React.ReactElement {
   const colors = getColors(useColorScheme())
 
   const renderIcon = (
@@ -31,31 +32,31 @@ export default function Header ({backIcon,title,subtitle,leftIcon,rightIcon, sub
 
   return (
     <View style={styles.headerContainer}>
-      {!isNil(backIcon) && (
+      {!isNil(props.backIcon) && (
         <TouchableOpacity
           style={[styles.backIconButton, { backgroundColor: colors.white }]}
         >
-          {backIcon}
+          {props.backIcon}
         </TouchableOpacity>
       )}
       <View style={styles.titleContainer}>
 
-        {renderIcon(leftIcon, 'left')}
+        {renderIcon(props.leftIcon, 'left')}
 
         <View style={styles.centerContainer}>
-          {!isUndefined(title) && (
+          {!isUndefined(props.title) && (
             <Text style={[styles.title]}>
-              {title}
+              {props.title}
             </Text>
           )}
-          {!isUndefined(subtitle) && (
-            <Text style={[styles.subtitle, { color: subtitleColor }]}>
-              {subtitle}
+          {!isUndefined(props.subtitle) && (
+            <Text style={[styles.subtitle, { color: props.subtitleColor}, props.style]}>
+              {props.subtitle}
             </Text>
           )}
         </View>
 
-        {renderIcon(rightIcon, 'right')}
+        {renderIcon(props.rightIcon, 'right')}
 
       </View>
     </View>
