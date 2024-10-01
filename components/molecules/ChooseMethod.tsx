@@ -1,6 +1,6 @@
 import { isNil } from 'lodash'
 import React, { useState } from 'react'
-import { Switch, SwitchProps, Text, TouchableOpacity, TouchableOpacityProps, useColorScheme, View } from 'react-native'
+import { Switch, SwitchProps, Text, TouchableOpacity, TouchableOpacityProps, useColorScheme, View, StyleSheet } from 'react-native'
 
 import getColors from '~/constants/Colors'
 import useTranslation from '~/hooks/useTranslation'
@@ -15,8 +15,8 @@ type Props = {
 export const ChooseMethod = (props: Props): React.ReactElement => {
     const { t } = useTranslation()
     const [isChecked, setIsChecked] = useState(false)
-    const colors = getColors(useColorScheme())
-    const isDarkMode = useColorScheme() === 'dark'
+    const scheme = useColorScheme()
+    const colors = getColors(scheme)
     const renderIcon = (icon: React.ReactElement): React.ReactElement => {
         return icon
     }
@@ -27,35 +27,58 @@ export const ChooseMethod = (props: Props): React.ReactElement => {
     }
 
     return (
-        <TouchableOpacity style={{ gap: 16, marginTop: 16 }} onPress={props.onPress}>
-            <View style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-            }}>
-                <View style={{ flex: 1, alignItems: "center", gap: 16 , flexDirection:"row"}}>
+        <TouchableOpacity style={styles.touchableContainer} onPress={props.onPress}>
+            <View style={styles.iconContainer}>
+                <View style={styles.leftContainer}>
 
                     {!isNil(props.leftIcon) && renderIcon(props.leftIcon)}
 
-                    <Text style={{ fontSize: 16, fontWeight: 400 }}>
-                        {t('account.' + props.nameMethod)}</Text>
+                    <Text style={styles.methodText}>
+                        {t('account.' + props.nameMethod)}
+                    </Text>
 
                 </View>
 
-                {props.useSwitch === true
+                {props.useSwitch
                     ? (
                         <Switch
+                            value={isChecked}
                             thumbColor={colors.white}
-                            trackColor={isChecked? colors.cornflowerBlue: colors.softSilver}
+                            trackColor={{ true: colors.cornflowerBlue, false: colors.softSilver }}
                             onValueChange={handleSwitchChange}
-
-                        >
-                        </Switch>)
-
-                    : (!isNil(props.rightIcon) && renderIcon(props.rightIcon))}
-
+                            style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
+                        />
+                    )
+                    : (!isNil(props.rightIcon) && renderIcon(props.rightIcon))
+                }
             </View>
-            <View style={{ height: 1, width: '100%', backgroundColor: colors.silverGray }} />
+            <View style={[styles.separator, { backgroundColor: colors.silverGray }]} />
         </TouchableOpacity>
     )
 }
+
+const styles = StyleSheet.create({
+    touchableContainer: {
+        gap: 16,
+        marginTop: 16,
+    },
+    iconContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    leftContainer: {
+        flex: 1,
+        alignItems: 'center',
+        gap: 16,
+        flexDirection: 'row',
+    },
+    methodText: {
+        fontSize: 16,
+        fontWeight: 'normal',
+    },
+    separator: {
+        height: 1,
+        width: '100%',
+    },
+})
