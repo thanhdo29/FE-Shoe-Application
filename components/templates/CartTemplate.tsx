@@ -53,6 +53,7 @@ const CartTemplate: React.FC = () => {
     <View style={styles.container}>
       
       <Header
+        style={{ fontWeight:"bold"}}
         leftIcon={
           <TouchableOpacity onPress={handleBack} style={{padding: 10,borderRadius: 50,backgroundColor: colors.white}}>
             <Entypo name="chevron-left" size={20} color={colors.midnightBlue} />
