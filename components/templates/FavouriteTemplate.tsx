@@ -1,18 +1,18 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import React from 'react'
-import Header from '../molecules/Header'
+import Header from '~/components/molecules/Header'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
 import dataBranch from '~/constants/DataBranch'
-import ListShoeFavouriteItem from '../organisms/ListShoeFavouriteItem'
-import ButtonRenderIcon from '../atoms/ButtonRenderIcon'
+import ListShoeFavouriteItem from '~/components/organisms/ListShoeFavouriteItem'
+import ButtonRenderIcon from '~/components/atoms/ButtonRenderIcon'
 
 const FavouriteTemplate = () => {
 
   return (
-    <View style={{ flex: 1, marginBottom: 120 }}>
+    <View style={{ flex: 1, marginBottom: 120, padding:20 }}>
       <Header
         style={{ fontWeight: "bold" }}
-        title='Favourite'
+        subtitle='Favourite'
         rightIcon={<ButtonRenderIcon
           icon={<FontAwesome6 name="heart" size={18} color="black" />} />}
       />

@@ -1,18 +1,19 @@
 import { FlatList, StyleSheet, Text, useColorScheme, View } from 'react-native'
 import React from 'react'
-import Header from '../molecules/Header'
-import ButtonRenderIcon from '../atoms/ButtonRenderIcon'
+import Header from '~/components/molecules/Header'
+import ButtonRenderIcon from '~/components/atoms/ButtonRenderIcon'
 import { Entypo } from '@expo/vector-icons'
 import getColors from '~/constants/Colors'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import dataBranch from '~/constants/DataBranch'
-import ListShoeFavouriteItem from '../organisms/ListShoeFavouriteItem'
+import ListShoeFavouriteItem from '~/components/organisms/ListShoeFavouriteItem'
 
 const BestSellerTemplate = () => {
     const colors = getColors(useColorScheme())
     return (
-        <View style={{ flex: 1, gap: 20, marginTop: 20 }}>
+        <View style={{ flex: 1, gap: 20, padding:20 }}>
             <Header
+                style={{fontWeight:"bold"}}
                 subtitle='Best Selllers'
                 leftIcon={<ButtonRenderIcon
                     icon={<Entypo name="chevron-left" size={20} color={colors.midnightBlue} />} />}

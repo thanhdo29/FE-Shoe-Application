@@ -5,9 +5,9 @@ import { ShoesCategory } from '~/components/molecules/ShoesCategory'
 import getColors from '~/constants/Colors'
 import dataMethodSetting from '~/constants/DataMethodSetting'
 import useTranslation from '~/hooks/useTranslation'
-import Header from '../molecules/Header'
-import { ChooseMethod } from '../molecules/ChooseMethod'
-import { RenderIcon } from '../atoms/RenderIcon'
+import Header from '~/components/molecules/Header'
+import { ChooseMethod } from '~/components/molecules/ChooseMethod'
+import { RenderIcon } from '~/components/atoms/RenderIcon'
 import dataMethodAccount from '~/constants/DataMethodAccount'
 
 const SettingTemplate: React.FC = () => {
@@ -24,10 +24,10 @@ const SettingTemplate: React.FC = () => {
       <View style={{
         flex: 1,
         paddingBottom: 120,
-        paddingHorizontal: 20
+        padding: 20
       }}>
 
-        <Header title={t('account.account&Settings')} />
+        <Header style={{fontWeight: "bold"}} subtitle={t('account.account&Settings')} />
 
         <ShoesCategory
           leftText={t('account.account')}
