@@ -25,8 +25,12 @@ const HomeTemplate: React.FC = () => {
   }>()
   const { t } = useTranslation()
 
+  const redirectToProfile =() => {
+    router.push('/authentication/Profile')
+  }
+
   const leftIconOfHeader = (
-    <Entypo name="grid" size={25} color={color.midnightBlue} />
+    <Entypo name="grid" size={25} color={color.midnightBlue} onPress={redirectToProfile} />
   )
   const rightIconOfHeader = (
     <Ionicons name="bag-handle-outline" size={25} color={color.midnightBlue} onPress={()=>redirectToCart()}/>

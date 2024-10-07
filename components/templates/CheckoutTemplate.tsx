@@ -25,49 +25,53 @@ const CheckoutTemplate = () => {
   const [isModalVisible, setModalVisible] = useState(false); // State để quản lý modal
 
   return (
-    <ScrollView
-    showsVerticalScrollIndicator={false}
-    >
-      <View  style={styles.container}>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <Header
+          style={{ fontWeight: "bold" }}
+          leftIcon={
+            <TouchableOpacity
+              onPress={handleBack}
+              style={{
+                padding: 10,
+                borderRadius: 50,
+                backgroundColor: colors.white,
+              }}
+            >
+              <Entypo
+                name="chevron-left"
+                size={20}
+                color={colors.midnightBlue}
+              />
+            </TouchableOpacity>
+          }
+          subtitle="Checkout"
+        />
 
-      
-      <Header
-        style={{ fontWeight:"bold"}}
-        leftIcon={
-          <TouchableOpacity
-            onPress={handleBack}
-            style={{
-              padding: 10,
-              borderRadius: 50,
-              backgroundColor: colors.white,
-            }}
-          >
-            <Entypo name="chevron-left" size={20} color={colors.midnightBlue} />
-          </TouchableOpacity>
-        }
-        subtitle="Checkout"
-      />
+        <View style={styles.infor}>
+          <ContactInfo
+            email="rumenhussen@gmail.com"
+            phone="+88-692-764-269"
+            address="123 Main St, City, Country"
+          />
+        </View>
 
-      <View style={styles.infor}>
-        <ContactInfo />
-      </View>
+        <PayProduct
+          subtotal="$1250.00"
+          shipping="$40.90"
+          totalCost="$1690.99"
+          onCheckout={() => {
+            setModalVisible(true);
+          }}
+        />
 
-      <PayProduct
-        subtotal="$1250.00"
-        shipping="$40.90"
-        totalCost="$1690.99"
-        onCheckout={() => {
-          setModalVisible(true);
-        }}
-      />
-
-      <PaymentSuccessModal 
-        isVisible={isModalVisible} 
-        onClose={() => {
-          setModalVisible(false)
-          router.replace('/(tabs)/home')
-        }}
-      />
+        <PaymentSuccessModal
+          isVisible={isModalVisible}
+          onClose={() => {
+            setModalVisible(false);
+            router.replace("/(tabs)/home");
+          }}
+        />
       </View>
     </ScrollView>
   );

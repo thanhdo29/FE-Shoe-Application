@@ -38,6 +38,7 @@ export default function RootLayout() {
         <Stack.Screen name="product/Detail" options={{headerShown:false}}/>
         <Stack.Screen name="product/Cart" options={{headerShown:false}}/>
         <Stack.Screen name="product/Checkout" options={{headerShown:false}}/>
+        <Stack.Screen name="authentication/Profile" options={{headerShown:false}}/>
         
       </Stack>
     </ThemeProvider>
