@@ -3,10 +3,17 @@ import { View, Text, StyleSheet } from 'react-native';
 import PaymentMethodSelector from '~/components/molecules/PaymentMethodSelector';
 import ContactRow from '~/components/atoms/ContactRow';
 
-const ContactInfo = () => {
-  const [email, setEmail] = useState('rumenhussen@gmail.com');
-  const [phone, setPhone] = useState('+88-692-764-269');
-  const [address, setAddress] = useState('123 Main St, City, Country');
+
+interface Props {
+  email: string
+  phone: string
+  address: string
+}
+
+const ContactInfo = (props: Props) => {
+  const [email, setEmail] = useState(props.email);
+  const [phone, setPhone] = useState(props.phone);
+  const [address, setAddress] = useState(props.address);
   
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>('cash');
 
