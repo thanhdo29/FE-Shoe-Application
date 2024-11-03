@@ -27,13 +27,13 @@ export const InforShoesItem = (props: Props): React.ReactElement => {
                 fontSize: 16,
                 fontWeight: 500,
                 color: colors.midnightBlue
-              }}>Nike Jordan</Text>
+              }}>{props.nameShoes}</Text>
             <Text
               style={{
                 fontSize: 14,
                 fontWeight: 500,
                 color: colors.midnightBlue
-              }}>$493.00</Text>
+              }}>{props.priceShoes}</Text>
         </View >
     )
 }

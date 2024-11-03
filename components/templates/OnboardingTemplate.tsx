@@ -104,7 +104,7 @@ const OnboardingTemplate = (): JSX.Element => {
           title={buttonText}
           onPress={() => {
             currentIndex === 2
-              ? router.replace('/(tabs)/home' as Href)
+              ? router.replace('/authentication/SignIn' as Href)
               : scrollToNext()
           }} />
       </View>

@@ -1,6 +1,6 @@
 import { Entypo, Feather, Ionicons } from '@expo/vector-icons'
 import { MotiView } from 'moti'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, ScrollView, StyleSheet, Text, useColorScheme, View } from 'react-native'
 
 import FormInputWithLabel from '~/components/atoms/FormInputWithLabel'
@@ -14,10 +14,14 @@ import { ListShoesItem } from '~/components/organisms/ListShoeItem'
 import { BannerShoesItem } from '~/components/molecules/BannerShoesItem'
 import { useRouter } from 'expo-router'
 import ButtonRenderIcon from '../atoms/ButtonRenderIcon'
+import axios from 'axios'
+import { API_URL } from '~/API/ipconfig'
 
 const HomeTemplate: React.FC = () => {
   const color = getColors(useColorScheme())
   const router = useRouter()
+
+  const [data, setdata] = useState([]);
 
   const [selectedBranch, setSelectBranch] = useState<{
     logo: number
@@ -40,6 +44,18 @@ const HomeTemplate: React.FC = () => {
     router.push('/product/Cart')
   }
 
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const response = await axios.get(`${API_URL}product`); // Đảm bảo URL chính xác
+        setdata(response.data); // Cập nhật trạng thái với danh sách sản phẩm
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+    getProducts(); 
+  }, []); 
+  
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -126,7 +142,7 @@ const HomeTemplate: React.FC = () => {
           }}
         />
 
-        <ListShoesItem dataShoes={dataBranch} />
+        <ListShoesItem dataShoes={data} />
 
         <ShoesCategory
           leftText={t('home.newArrivals')}
@@ -158,7 +174,7 @@ const HomeTemplate: React.FC = () => {
           }}
 
         />
-        <ListShoesItem dataShoes={dataBranch} />
+        <ListShoesItem dataShoes={data} />
       </View>
     </ScrollView>
   )

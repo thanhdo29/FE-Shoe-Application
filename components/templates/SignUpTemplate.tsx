@@ -97,7 +97,7 @@ const handleSignUp = async (): Promise<void> => {
     
   } catch (error) {
     // Xử lý lỗi khi gửi yêu cầu hoặc phản hồi từ server
-    alert(t('Email đã tồn tại')+ error)
+    alert(t('Đăng ký thất bại'))
     console.error('Đăng ký thất bại:', error)
   }
 }
