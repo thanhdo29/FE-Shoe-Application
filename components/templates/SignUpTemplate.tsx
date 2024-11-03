@@ -8,6 +8,10 @@ import Header from '~/components/molecules/Header'
 import InputForm from '~/components/molecules/InputForm'
 import getColors from '~/constants/Colors'
 import useTranslation from '~/hooks/useTranslation'
+import axios from 'axios'
+import { API_URL } from '~/API/ipconfig'
+
+// const API_URL = "http://192.168.1.11:3000/"
 
 const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -60,6 +64,45 @@ const SignUpTemplate: React.FC = (): JSX.Element => {
     router.push('/authentication/SignIn')
   }
 
+
+const handleSignUp = async (): Promise<void> => {
+
+
+  let name = "sds sd"
+
+  try {
+    // Xác thực lại form
+    validateForm()
+
+    // Nếu có lỗi trong form thì không gửi yêu cầu
+    if (emailError || passwordError || confirmPasswordError) {
+      return
+    }
+
+    // Tạo payload để gửi lên server
+    const payload = {
+      name:"User "+ Math.random().toFixed(4),
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword
+    }
+
+    // Gửi yêu cầu POST tới API đăng ký
+    const response = await axios.post(`${API_URL}signup`, payload)
+
+    // Xử lý phản hồi thành công từ server
+  
+      alert(t('signUp.success'))
+      router.push('/authentication/SignIn')
+    
+  } catch (error) {
+    // Xử lý lỗi khi gửi yêu cầu hoặc phản hồi từ server
+    alert(t('Đăng ký thất bại'))
+    console.error('Đăng ký thất bại:', error)
+  }
+}
+
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.lightSilver }]}>
       <Header
@@ -80,6 +123,7 @@ const SignUpTemplate: React.FC = (): JSX.Element => {
         emailError={emailError}
         passwordError={passwordError}
         confirmPasswordError={confirmPasswordError}
+        onLoginPress={handleSignUp}
       />
 
       <FooterComponent

@@ -45,7 +45,10 @@ export const ListShoesItem = (props: Props): React.ReactElement => {
             paddingLeft: 12,
             alignItems: "flex-end"
           }}>
-          <InforShoesItem/>
+          <InforShoesItem
+          nameShoes={item.name}
+          priceShoes={"$"+item.price}
+          />
           <ButtonAdd style={{ alignSelf: "flex-end" }} />
         </View>
       </MotiView>
