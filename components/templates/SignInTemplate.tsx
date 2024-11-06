@@ -13,13 +13,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { API_URL } from '~/API/ipconfig'
 
 
-// const API_URL = "http://192.168.1.11:3000/"
-
-const isValidEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
-}
-
 const SignInTemplate: React.FC = (): JSX.Element => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -46,11 +39,6 @@ const SignInTemplate: React.FC = (): JSX.Element => {
 
 
   const handleLogin = async (): Promise<void> => {
-    // Kiểm tra thông tin đầu vào
-    if (!isValidEmail(email) || !password) {
-      alert(t('login.invalidCredentials')); // Hiển thị thông báo lỗi
-      return;
-    }
   
     // Tạo payload để gửi lên server
     const payload = {
@@ -65,9 +53,7 @@ const SignInTemplate: React.FC = (): JSX.Element => {
       // Xử lý phản hồi thành công
       if (response.status === 200) {
         const { token, user } = response.data;
-        alert(t('login.success')); // Hiển thị thông báo thành công
-  
-        // Lưu token vào AsyncStorage
+        alert(t('login.success'));
         await AsyncStorage.setItem('authToken', token);
   
         // Chuyển hướng sau khi đăng nhập thành công
@@ -90,11 +76,7 @@ const SignInTemplate: React.FC = (): JSX.Element => {
       <Header
         title={t('signIn.helloAgain')}
         subtitle={t('signIn.welcomeBackYouHaveBeenMissed')}
-        subtitleColor={colors.slateGray}
-        backIcon={
-          <AntDesign name="left" size={18}
-            color={colors.black} onPress={handleBack}/>
-        } />
+        subtitleColor={colors.slateGray} />
 
       <InputForm
         visibleRecoveryPassword={true}
@@ -119,6 +101,7 @@ export default SignInTemplate
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    paddingTop: 60
   }
 })

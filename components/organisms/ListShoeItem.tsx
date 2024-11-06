@@ -18,24 +18,27 @@ export const ListShoesItem = (props: Props): React.ReactElement => {
 
   const router = useRouter()
 
-  const redirectToDetail = (): void => {
-    router.push('/product/Detail')
+  const redirectToDetail = (item: any): void => {
+    router.push({
+      pathname: '/product/Detail',
+      params: { item: JSON.stringify(item) }, 
+    });
   }
 
 
   const renderItemList = (index: number, item: any): React.ReactElement => {
     return (
-      <TouchableOpacity onPress={redirectToDetail}>
+      <TouchableOpacity onPress={() => redirectToDetail(item)}>
         <MotiView
         style={[styles.container, { backgroundColor: colors.white }]}
         from={{ opacity: 0, translateX: 50 }}
         animate={{ opacity: 1, translateX: 0 }}
         transition={{ delay: index * 200 }}>
         <Image
-          source={require('~/assets/images/shoes3.png')}
+          source={{uri: item.images[0]}}
           style={{
-            height: 100,
-            maxWidth: 120
+            height: 120,
+            width: 120
           }}
         />
         <View
@@ -47,7 +50,7 @@ export const ListShoesItem = (props: Props): React.ReactElement => {
           }}>
           <InforShoesItem
           nameShoes={item.name}
-          priceShoes={"$"+item.price}
+          priceShoes={item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
           />
           <ButtonAdd style={{ alignSelf: "flex-end" }} />
         </View>

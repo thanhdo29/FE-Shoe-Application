@@ -5,10 +5,12 @@ import { useColorScheme } from 'react-native';
 import getColors from '~/constants/Colors';
 
 interface PriceSectionProps {
-  inStock: boolean;
+  inStock: boolean
+  total: string
+  addCartPress?:() => void 
 }
 
-const PriceSection: React.FC<PriceSectionProps> = ({ inStock }) => {
+const PriceSection: React.FC<PriceSectionProps> = (props: PriceSectionProps) => {
   const colorScheme = useColorScheme();
   const currentColors = getColors(colorScheme);
   const { t } = useTranslation();
@@ -20,20 +22,21 @@ const PriceSection: React.FC<PriceSectionProps> = ({ inStock }) => {
           {t('details.price')}
         </Text>
         <Text style={styles.price}>
-          {'$987.800'}
+          {props.total}
         </Text>
       </View>
       <TouchableOpacity
+        onPress={props.addCartPress}
         style={[
           styles.button,
           {
-            backgroundColor: inStock ? '#5B9EE1' : currentColors.gray,
+            backgroundColor: props.inStock ? '#5B9EE1' : currentColors.gray,
           },
         ]}
-        disabled={!inStock}
+        disabled={!props.inStock}
       >
         <Text style={[styles.buttonText, { color: currentColors.white }]}>
-          {t(inStock ? 'details.addToCart' : 'details.outOfStock')}
+          {t(props.inStock ? 'details.addToCart' : 'details.outOfStock')}
         </Text>
       </TouchableOpacity>
     </View>

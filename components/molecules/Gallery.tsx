@@ -22,7 +22,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, scrollToIndex }) => {
         {images.map((img, index) => (
           <TouchableOpacity key={index} onPress={() => scrollToIndex(index)}>
             <Image
-              source={img}
+              source={{uri: img.toString()}}
               style={[styles.image, { backgroundColor: colors.whiteSmoke }]}
             />
           </TouchableOpacity>
