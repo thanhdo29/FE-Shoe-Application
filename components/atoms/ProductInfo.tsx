@@ -7,9 +7,10 @@ import getColors from '~/constants/Colors';
 interface ProductInfoProps {
   name: string;
   price: string;
+  desc: string
 }
 
-const ProductInfo: React.FC<ProductInfoProps> = ({ name, price }) => {
+const ProductInfo: React.FC<ProductInfoProps> = ({ name, price,desc }) => {
   const colorScheme = useColorScheme();
   const colors = getColors(colorScheme);
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ name, price }) => {
         {price}
       </Text>
       <Text style={[styles.productDescription,{color: colors.slateGray}]}>
-        {t('details.productDescription')}
+        {desc}
       </Text>
     </View>
   );
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
   },
   productPrice: {
     fontSize: 20,
+    color:'red',
     fontWeight: 'bold',
     marginVertical: 7,
   },

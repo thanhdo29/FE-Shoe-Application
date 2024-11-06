@@ -1,5 +1,6 @@
 import Entypo from "@expo/vector-icons/Entypo";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import React, { useRef, useState } from "react";
 import {
   Dimensions,
@@ -11,6 +12,7 @@ import {
   Image,
   useColorScheme,
   SafeAreaView,
+  Text,
 } from "react-native";
 
 import PriceSection from "~/components/atoms/PriceSection";
@@ -22,6 +24,7 @@ import getColors from "~/constants/Colors";
 import Header from "~/components/molecules/Header";
 import useTranslation from "~/hooks/useTranslation";
 import { useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 
 const images = [
   require("~/assets/images/shoes5.png"),
@@ -34,10 +37,12 @@ const DetailTemplate: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const colors = getColors(useColorScheme());
   const flatListRef = useRef<FlatList>(null);
-  const sizes = ["38", "39", "40", "41", "42", "43"];
   const [selectedSize, setSelectedSize] = useState<string>("40");
-  const outOfStockSizes = ["42", "43"];
+  const outOfStockSizes = [""];
   const router = useRouter();
+
+  const data = useLocalSearchParams();
+  const parsedItem = data.item ? JSON.parse(data.item as string) : null;
 
   const scrollToIndex = (index: number): void => {
     flatListRef.current?.scrollToIndex({ animated: true, index });
@@ -51,7 +56,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
   const leftIconOfHeader = (
     <TouchableOpacity
       onPress={handleBack}
-      style={[styles.iconButton, { backgroundColor: colors.white, left:10 }]}
+      style={[styles.iconButton, { backgroundColor: colors.white, left: 10 }]}
     >
       <Entypo name="chevron-left" size={18} color={colors.midnightBlue} />
     </TouchableOpacity>
@@ -59,13 +64,9 @@ const DetailTemplate: React.FC = (): JSX.Element => {
 
   const rightIconOfHeader = (
     <TouchableOpacity
-      style={[styles.iconButton, { backgroundColor: colors.white, right:10 }]}
+      style={[styles.iconButton, { backgroundColor: colors.white, right: 10 }]}
     >
-      <Ionicons
-        name="bag-handle-outline"
-        size={18}
-        color={colors.midnightBlue}
-      />
+      <MaterialIcons name="favorite" size={18} color={colors.midnightBlue} />
     </TouchableOpacity>
   );
 
@@ -73,7 +74,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Header
-          style={{ fontWeight:"bold"}}
+          style={{ fontWeight: "bold" }}
           leftIcon={leftIconOfHeader}
           rightIcon={rightIconOfHeader}
           subtitle={t("details.mensShoes")}
@@ -86,7 +87,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
         >
           <FlatList
             ref={flatListRef}
-            data={images}
+            data={parsedItem.images}
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}
@@ -97,7 +98,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
               setCurrentImageIndex(index);
             }}
             renderItem={({ item }) => (
-              <Image source={item} style={styles.image} />
+              <Image source={{ uri: item }} style={styles.image} />
             )}
             keyExtractor={(item, index) => index.toString()}
           />
@@ -119,15 +120,28 @@ const DetailTemplate: React.FC = (): JSX.Element => {
           </View>
         </View>
         <View style={[styles.infoContainer, { backgroundColor: colors.white }]}>
-          <ProductInfo name="Nike Air Jordan" price="$967.800" />
-          <Gallery images={images} scrollToIndex={scrollToIndex} />
+          <ProductInfo
+            name={parsedItem.name}
+            price={parsedItem.price.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            })}
+            desc={parsedItem.description}
+          />
+          <Gallery images={parsedItem.images} scrollToIndex={scrollToIndex} />
           <SizeSelector
-            sizes={sizes}
+            sizes={parsedItem.sizes}
             selectedSize={selectedSize}
             setSelectedSize={setSelectedSize}
             outOfStockSizes={outOfStockSizes}
           />
-          <PriceSection inStock={true} />
+          <PriceSection
+            total={parsedItem.price.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            })}
+            inStock={true}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -137,7 +151,8 @@ const DetailTemplate: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    paddingTop: 20,
+    backgroundColor: "#FFF",
   },
   imageContainer: {
     height: 270,

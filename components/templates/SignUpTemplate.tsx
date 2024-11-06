@@ -81,7 +81,6 @@ const handleSignUp = async (): Promise<void> => {
 
     // Tạo payload để gửi lên server
     const payload = {
-      name:"User "+ Math.random().toFixed(4),
       email: email,
       password: password,
       confirmPassword: confirmPassword
