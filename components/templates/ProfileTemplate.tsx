@@ -22,7 +22,6 @@ import { API_URL } from "~/API/ipconfig";
 
 const DEFAULT_IMAGE =
   "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3467.jpg";
-// const API_URL = "http://192.168.1.11:3000/";
 
 const ProfileTemplate = () => {
   const colors = getColors(useColorScheme());

@@ -25,6 +25,9 @@ import Header from "~/components/molecules/Header";
 import useTranslation from "~/hooks/useTranslation";
 import { useRouter } from "expo-router";
 import { useLocalSearchParams } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import { API_URL } from "~/API/ipconfig";
 
 const images = [
   require("~/assets/images/shoes5.png"),
@@ -37,7 +40,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   const colors = getColors(useColorScheme());
   const flatListRef = useRef<FlatList>(null);
-  const [selectedSize, setSelectedSize] = useState<string>("40");
+  const [selectedSize, setSelectedSize] = useState<string>('');
   const outOfStockSizes = [""];
   const router = useRouter();
 
@@ -69,6 +72,42 @@ const DetailTemplate: React.FC = (): JSX.Element => {
       <MaterialIcons name="favorite" size={18} color={colors.midnightBlue} />
     </TouchableOpacity>
   );
+
+  const btn_add = async () => {
+    if(selectedSize == '' || selectedSize == null){
+      alert("chưa chọn size")
+      return
+    }
+    
+    const itemId = parsedItem._id; // Lấy ID sản phẩm
+    const quantity = 1; // Hoặc lấy giá trị từ data nếu có trường quantity
+    const token = await AsyncStorage.getItem("authToken"); // Lấy token từ AsyncStorage
+    const userId = await axios.get(`${API_URL}user`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log("UserId: " + userId.data._id);
+    console.log("ProductId: " + itemId);
+
+    const payload = {
+      userId: userId.data._id,
+      productId: itemId,
+      quantity: quantity,
+      size: selectedSize
+    };
+    try {
+      const response = await axios.post(`${API_URL}cart`, payload);
+
+      // Kiểm tra kết quả từ server
+      console.log("Product added to cart:", response.data);
+      alert("Sản phẩm đã được thêm vào giỏ hàng thành công!");
+    } catch (error) {
+      // Xử lý lỗi nếu có
+      console.error("Error adding product to cart:", error);
+      alert("Lỗi khi thêm sản phẩm vào giỏ hàng");
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -141,6 +180,7 @@ const DetailTemplate: React.FC = (): JSX.Element => {
               currency: "VND",
             })}
             inStock={true}
+            addCartPress={btn_add}
           />
         </View>
       </ScrollView>

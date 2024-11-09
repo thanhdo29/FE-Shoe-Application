@@ -1,61 +1,130 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
-import PayProduct from '~/components/atoms/PayProduct';
-import ProductCard from '~/components/atoms/ProductCart';
-import Header from '~/components/molecules/Header';
-import getColors from '~/constants/Colors';
-import { useRouter } from 'expo-router';
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  useColorScheme,
+  FlatList,
+  Alert,
+} from "react-native";
+import { Entypo } from "@expo/vector-icons";
+import PayProduct from "~/components/atoms/PayProduct";
+import ProductCard from "~/components/atoms/ProductCart";
+import Header from "~/components/molecules/Header";
+import getColors from "~/constants/Colors";
+import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_URL } from "~/API/ipconfig";
+import axios from "axios";
 
 const CartTemplate: React.FC = () => {
-  const [quantity, setQuantity] = useState<number>(1);
   const colors = getColors(useColorScheme());
-  const router = useRouter()
-  
+  const [data, setData] = useState<any>([]);
+  const router = useRouter();
+  const shipping = 40000
 
-  const sampleShoe = {
-    brand: {
-      description: 'Leading sports brand',
-      id: 'brand1',
-      logo: 'https://example.com/',
-      name: 'Nike'
-    },
-    categories: [],
-    colors: ['red', 'blue'],
-    description: 'A popular shoe model',
-    discount: {
-      _id: 'discount1',
-      endTime: '2023-12-31T23:59:59Z',
-      percents: '10',
-      startTime: '2023-01-01T00:00:00Z'
-    },
-    id: '1',
-    images: ['https://bom.so/1waW9k'],
-    name: 'Nike Air Max',
-    price: '$64.95',
-    sizes: ['38'],
-    thumbnail: ['https://example.com/thumb.jpg'],
-    userGender: ['unisex']
+  const getDataCart = async () => {
+    const token = await AsyncStorage.getItem("authToken"); // Lấy token từ AsyncStorage
+    const userId = await axios.get(`${API_URL}user`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    try {
+      const cartResponse = await axios.get(`${API_URL}cart/${userId.data._id}`);
+      setData(cartResponse.data);
+    } catch (error) {
+      console.error("Error cart:", error);
+    }
+  };
+
+  useEffect(() => {
+    getDataCart();
+  }, []);
+
+  const handleBack = (): void => {
+    router.back();
+  };
+
+  const redirectToCheckout = (): void => {
+    router.push("/product/Checkout");
   };
 
 
-  const handleBack = (): void => {
-    router.back()
-  }
+  const handleIncreaseQuantity = async (itemId: string) => {
+    const token = await AsyncStorage.getItem("authToken"); // Lấy token từ AsyncStorage
+    const userId = await axios.get(`${API_URL}user`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  const redirectToCheckout = (): void => {
-    router.push('/product/Checkout')
-  }
-
-
-  return (
     
+    try {
+      await axios.post(`${API_URL}cart/increase/${userId.data._id}`, {itemId });
+      getDataCart(); // Cập nhật giỏ hàng sau khi thay đổi
+    } catch (error) {
+      console.error("Error increasing quantity:", error);
+    }
+  };
+
+  const handleDecreaseQuantity = async (itemId: string) => {
+    const token = await AsyncStorage.getItem("authToken"); // Lấy token từ AsyncStorage
+    const userId = await axios.get(`${API_URL}user`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    try {
+      await axios.post(`${API_URL}cart/decrease/${userId.data._id}`, { itemId });
+      getDataCart(); // Cập nhật giỏ hàng sau khi thay đổi
+    } catch (error) {
+      console.error("Error decreasing quantity:", error);
+    }
+  };
+
+  const handleDelete = async (itemId: string) => {
+    const token = await AsyncStorage.getItem("authToken"); // Lấy token từ AsyncStorage
+    const userId = await axios.get(`${API_URL}user`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    Alert.alert('Bạn chắc chắn muốn xóa', '', [
+      {
+        text: 'Không',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: async() => {
+        try {
+          await axios.post(`${API_URL}cart/remove/${userId.data._id}`, { itemId });
+          getDataCart(); // Cập nhật giỏ hàng sau khi thay đổi
+        } catch (error) {
+          console.error("Error decreasing quantity:", error);
+        }
+      }},
+    ]);
+    
+  };
+  
+  return (
     <View style={styles.container}>
-      
       <Header
-        style={{ fontWeight:"bold"}}
+        style={{ fontWeight: "bold" }}
         leftIcon={
-          <TouchableOpacity onPress={handleBack} style={{padding: 10,borderRadius: 50,backgroundColor: colors.white, left:10}}>
+          <TouchableOpacity
+            onPress={handleBack}
+            style={{
+              padding: 10,
+              borderRadius: 50,
+              backgroundColor: colors.white,
+              left: 10,
+            }}
+          >
             <Entypo name="chevron-left" size={20} color={colors.midnightBlue} />
           </TouchableOpacity>
         }
@@ -63,19 +132,52 @@ const CartTemplate: React.FC = () => {
       />
 
       <View style={styles.productCardContainer}>
-        <ProductCard
-          {...sampleShoe}
-          quantity={quantity}
-          onIncrease={() => setQuantity(quantity + 1)}
-          onDecrease={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
-          onRemove={() => console.log('Remove item')}
+        <FlatList
+          data={data.items || []}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <View>
+              <ProductCard
+                name={item.product.name}
+                images={item.product.images[0]}
+                price={item.product.price.toLocaleString("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                })}
+                size={item.size}
+                quantity={item.quantity}
+                onIncrease={() => {
+                  handleIncreaseQuantity(item._id);
+                }}
+
+                onDecrease={() => {
+                  handleDecreaseQuantity(item._id);
+          
+          
+                }}
+            
+                onRemove={() => {
+                  handleDelete(item._id)
+                }}
+              />
+            </View>
+          )}
         />
       </View>
 
       <PayProduct
-        subtotal="$1250.00"
-        shipping="$40.90"
-        totalCost="$1690.99"
+       subtotal={(data.totalPrice ? data.totalPrice : 0).toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      })}
+      shipping={shipping.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      })}
+      totalCost={(data.totalPrice ? data.totalPrice + shipping : shipping).toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      })}
         onCheckout={() => redirectToCheckout()}
       />
     </View>
