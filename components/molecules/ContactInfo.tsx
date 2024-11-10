@@ -6,16 +6,15 @@ import ContactRow from '~/components/atoms/ContactRow';
 
 interface Props {
   email: string
-  phone: string
-  address: string
+
+  onChangeMenthod: (text: string) => void;
+  onChangeEmail: (text: string) => void;
+  onChangeNumberphone: (text: string) => void;
+  onChangeAdress: (text: string) => void;
+  mentThod: string
 }
 
 const ContactInfo = (props: Props) => {
-  const [email, setEmail] = useState(props.email);
-  const [phone, setPhone] = useState(props.phone);
-  const [address, setAddress] = useState(props.address);
-  
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>('cash');
 
   return (
     <View style={styles.container}>
@@ -23,35 +22,39 @@ const ContactInfo = (props: Props) => {
 
       <ContactRow
         icon="mail"
-        value={email}
-        onChangeValue={setEmail}
+        value={props.email}
+        onChangeValue={props.onChangeEmail}
         keyboardType="email-address"
+        placeholder='Nhập email của bạn'
       />
       
       <ContactRow
         icon="phone"
-        value={phone}
-        onChangeValue={setPhone}
+       
+        onChangeValue={props.onChangeNumberphone}
         keyboardType="phone-pad"
+        placeholder='Nhập số điện thoại'
       />
 
       <ContactRow
         icon="map-pin"
-        value={address}
-        onChangeValue={setAddress}
+  
+        onChangeValue={props.onChangeAdress}
         keyboardType="default"
+        placeholder='Nhập địa chỉ'
       />
 
       <Text style={styles.paymentHeader}>Select payment method</Text>
       
       <PaymentMethodSelector
-        selectedMethod={selectedPaymentMethod}
-        onSelectMethod={setSelectedPaymentMethod}
+        
+        selectedMethod={props.mentThod}
+        onSelectMethod={props.onChangeMenthod}
       />
 
-      {selectedPaymentMethod && (
+      {props.mentThod && (
         <Text style={styles.selectedPaymentText}>
-          Selected payment method: {selectedPaymentMethod}
+          Selected payment method: {props.mentThod}
         </Text>
       )}
     </View>
