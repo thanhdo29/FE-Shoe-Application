@@ -5,12 +5,13 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 interface Prop {
   icon: keyof typeof Feather.glyphMap;
-  value: string;
+  value?: string;
   onChangeValue: (text: string) => void;
   keyboardType?: KeyboardTypeOptions;
+  placeholder:string
 }
 
-const ContactRow: React.FC<Prop> = ({ icon, value, onChangeValue, keyboardType = 'default' }) => {
+const ContactRow: React.FC<Prop> = ({ icon, value, onChangeValue, keyboardType = 'default', placeholder }) => {
   const [isEditing, setIsEditing] = useState(false);
   
   const toggleEdit = () => setIsEditing(!isEditing);
@@ -22,10 +23,12 @@ const ContactRow: React.FC<Prop> = ({ icon, value, onChangeValue, keyboardType =
         {isEditing ? (
           <TextInput
             style={styles.input}
-            value={value}
+            defaultValue={value}
             onChangeText={onChangeValue}
             keyboardType={keyboardType}
             autoFocus
+            placeholder={placeholder}
+           
           />
         ) : (
           <Text style={styles.infoText}>{value}</Text>

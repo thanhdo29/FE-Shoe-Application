@@ -49,7 +49,11 @@ const CartTemplate: React.FC = () => {
   };
 
   const redirectToCheckout = (): void => {
-    router.push("/product/Checkout");
+    // router.push("/product/Checkout");
+    router.push({
+      pathname: "/product/Checkout",
+      params: { item: JSON.stringify(data) },
+    });
   };
 
 
@@ -149,13 +153,9 @@ const CartTemplate: React.FC = () => {
                 onIncrease={() => {
                   handleIncreaseQuantity(item._id);
                 }}
-
                 onDecrease={() => {
                   handleDecreaseQuantity(item._id);
-          
-          
                 }}
-            
                 onRemove={() => {
                   handleDelete(item._id)
                 }}
